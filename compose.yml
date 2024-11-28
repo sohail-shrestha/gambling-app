@@ -1,4 +1,22 @@
 services:
+  backend:
+    container_name: backend
+    build: ./backend/
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  web:
+    container_name: web
+    build: ./frontend/web
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./frontend/web:/app
+      - /app/node_modules
+
   mongodb:
     image: mongodb/mongodb-community-server:latest
     container_name: mongo-db
